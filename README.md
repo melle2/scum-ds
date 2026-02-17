@@ -8,7 +8,7 @@ To get your server running quickly, follow these steps:
 1. **Prepare Host Folders:**
    Create the directories on your host machine to store game data, saves, and Steam metadata:
    ```bash
-   mkdir -p /srv/games/scum/{game,saves,steam_data}
+   sudo mkdir -p /srv/games/scum/{game,saves,steam_data}
    ```
 2. **Set Permissions:**
    Due to security reasons, the container runs as a specific user (`scum`) with **UID 7010** and **GID 7010**. You must grant this user ownership of your host folders:
