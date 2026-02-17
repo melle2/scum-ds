@@ -1,4 +1,4 @@
-# SCUM Dedicated Server Docker Container
+# SCUM Dedicated Server Docker Image
 This Docker image provides a streamlined way to run a SCUM Dedicated Server on Linux using Wine and SteamCMD. It features automatic installation, easy updates, and persistent save management.
 
 ## 🚀 Quick Start
