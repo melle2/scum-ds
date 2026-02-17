@@ -1,0 +1,21 @@
+name: Docker Image SCUM CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-24.04
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Read VERSION file
+      id: getversion
+      run: echo "VERSION=$(cat VERSION)" >> $GITHUB_OUTPUT
+
+    - name: Build SCUM Docker image
+      run: docker build . --file Dockerfile --tag scum-dedicated-server:${{ steps.getversion.outputs.VERSION }}
