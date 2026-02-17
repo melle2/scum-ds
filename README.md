@@ -82,7 +82,8 @@ The startup script includes logic to prevent accidental data loss:
 * It checks for physical files in the game's internal save directory (`/scum/SCUM/Saved`).
 * If found, it backs them up to `/scum/scum_saved.bak` before creating a symbolic link to your persistent `/scum_saved` mount.<br>
   **Important:** Check the container logs (`docker logs scum_ds`) to see if this backup occurred.
-  **Warning:** This backup folder lives *inside* the container's temporary storage. You must copy it to your host machine before deleting the container, or those files will be lost forever!
+  **Warning:** This backup folder lives *inside* the container's temporary storage. You must copy it to your host machine before deleting the container, or those files will be lost forever!<br>
+<br>
 **BEFORE USING THIS IMAGE WITH AN EXISTING WORLD, CREATING A BACKUP IS HIGHLY RECOMMENDED!!!**
 
 ### Save Data Non-Protection
@@ -101,7 +102,7 @@ Message dialog closed, result: Ok, title: Message, text: Not all dll signatures 
 
 ## 📖 Troubleshooting
 * **Permissions**: If the server fails to start, double-check that the host folders are owned by UID 7010.
-* **Initial Setup**: The first run will take a long time as it downloads the full game (~13GB) via SteamCMD.
+* **Initial Setup**: The first run will take a while time as it downloads the server files (~13GB) via SteamCMD.
 * **Ports**: Ensure ports 7777-7779 (UDP/TCP) are open in your system firewall and forwarded on your router.
 * **Logs**: View the server output by running `docker logs -f scum-server`
 * **Container Hangs After Update**: Occasionally, if you update the docker-compose.yml file, the container may hang during the first startup attempt. If this happens, simply stop and start the container again without making further changes to the file. This usually clears any initialization locks.
