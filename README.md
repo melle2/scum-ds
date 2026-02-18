@@ -118,7 +118,7 @@ Docker Image is available at https://hub.docker.com/repository/docker/melle2/scu
 
 ## ⚠️ Disclaimer
 Use at your own risk. This project is provided "as is" without any warranty of any kind.
-* I am not responsible for any data loss, corrupted save files, or server downtime resulting from the use of this container.
+* I am not responsible for any data loss, corrupted save files, or server downtime resulting from the use of this image.
 * It is **highly recommended** to perform regular backups of your /scum_saved directory on the host machine.
 * By using this image, you acknowledge that you are responsible for maintaining your own data integrity.
 
