@@ -5,17 +5,21 @@ This Docker image provides a streamlined way to run a SCUM Dedicated Server on L
 **BEFORE USING THIS IMAGE WITH AN EXISTING WORLD, CREATING A BACKUP IS HIGHLY RECOMMENDED!!!**<br>
 To get your server running quickly, follow these steps:
 
-1. **Prepare Host Folders:**
+1. **Prerequisites:**
+   * **Docker & Docker Compose** installed on your system.
+   * **Linux Environment:** While this can run on Windows/macOS via Docker Desktop, these instructions are tailored for Linux.
+
+2. **Prepare Host Folders:**
    Create the directories on your host machine to store game data, saves, and Steam metadata:
    ```bash
    sudo mkdir -p /srv/games/scum/{game,saves,steam_data}
    ```
-2. **Set Permissions:**
+3. **Set Permissions:**
    Due to security reasons, the container runs as a specific user (`scum`) with **UID 7010** and **GID 7010**. You must grant this user ownership of your host folders:
    ```bash
    sudo chown -R 7010:7010 /srv/games/scum
    ```
-3. **Launch with Docker Compose:**
+4. **Launch with Docker Compose:**
    Create a `docker-compose.yml` (see below) and run `docker-compose up -d`.
 
 ## ⚙️ Configuration
@@ -29,6 +33,9 @@ Adjust these variables in your deployment to customize the server behavior:
 | `GAME_SERVER_PORT` | The query port for Steam's server browser.                      | `7779`  |
 | `GAME_UPDATE`      | Set to `true` to check for and install game updates on startup. | `false` |
 | `GAME_NO_BATTLEYE` | Disables BattlEye anti-cheat protection if set to `true`.       | `false` |
+
+Most parameters should be adjusted in `ServerSettings.ini`, which you can find detailed documentation on the [Scum Fandom Wiki](https://scum.fandom.com/wiki/Server_Settings).
+
 
 ### Volume Mapping
 To ensure your data is not lost when the container is re-created, map these volumes:
@@ -51,9 +58,10 @@ services:
       - "7777:7777/tcp"
       - "7779:7779/tcp"
     environment:
-      - GAME_MAX_PLAYER=50
-      - GAME_UPDATE=true
-      - GAME_SERVER_PORT=7779
+      GAME_MAX_PLAYER: 50
+      GAME_UPDATE: false
+      GAME_SERVER_PORT: 7779
+      GAME_NO_BATTLEYE: true
     volumes:
       - /srv/games/scum/game:/scum
       - /srv/games/scum/saves:/scum_saved
