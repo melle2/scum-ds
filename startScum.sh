@@ -53,7 +53,7 @@ if [ ! -L "$GAME_SAVE_DIR" ]; then
 fi
 
 echo "Starting Scum Dedicated Server"
-wine "${EXECUTABLE}" -log"${NO_BATTLEYE_PARAM}""${MAX_PLAYER_PARAM}""${SERVER_PORT_PARAM}"
+wine "${EXECUTABLE}" -log"${NO_BATTLEYE_PARAM}""${MAX_PLAYER_PARAM}""${SERVER_PORT_PARAM}" &
 
 WINE_PID=$!
 wait "$WINE_PID"
